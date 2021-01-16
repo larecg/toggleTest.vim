@@ -4,6 +4,7 @@ endif
 
 let g:loaded_toggleTest = 1
 
+let g:toggleTest_useTestFolder = get(g:, 'toggleTest_useTestFolder', 1)
 let g:toggleTest_testFolder = get(g:, 'toggleTest_testFolder', "tests")
 let g:toggleTest_testFileSuffix = get(g:, 'toggleTest_testFileSuffix', "test")
 
@@ -21,7 +22,7 @@ function! s:toggleTestFile() abort
   let l:nameWithoutTestSuffixLength = l:extensionLength + len(g:toggleTest_testFileSuffix) + 1
 
   if l:isTestFile
-    if l:isTestDirectory
+    if g:toggleTest_useTestFolder && l:isTestDirectory
       execute "edit " . l:currentFileDirectoryPath[:-l:testFolderLength] . l:currentFileName[:-l:nameWithoutTestSuffixLength] . l:currentFileExtension
     else
       execute "edit " . l:currentFilePath[:-l:nameWithoutTestSuffixLength] . l:currentFileExtension
@@ -31,7 +32,7 @@ function! s:toggleTestFile() abort
     let l:testFileWithTestFolder = l:testFileFolder . "/" . l:currentFileName[:-l:extensionLength] . g:toggleTest_testFileSuffix . "." . l:currentFileExtension
     let l:testFileWithoutTestFolder = l:currentFileDirectoryPath . "/" . l:currentFileName[:-l:extensionLength] . g:toggleTest_testFileSuffix . "." . l:currentFileExtension
 
-    if !empty(glob(l:testFileWithoutTestFolder))
+    if !g:toggleTest_useTestFolder || !empty(glob(l:testFileWithoutTestFolder))
       execute "edit " . l:testFileWithoutTestFolder
     else
       if !isdirectory(l:testFileFolder)

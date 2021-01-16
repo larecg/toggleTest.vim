@@ -44,6 +44,8 @@ In any file use `<leader>ft` to toggle between the current file and the test fil
 ### Settings
 
 ```vim
+" Are all the tests grouped in a nested test folder (default: 1)
+let g:toggleTest_useTestFolder = 1
 
 " Avoid creating default mappings (default: 0)
 let g:toggleTest_no_mappings = 1
