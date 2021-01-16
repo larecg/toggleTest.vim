@@ -57,9 +57,15 @@ let g:toggleTest_testFolder = "tests"
 let g:toggleTest_testFileSuffix = "test"
 
 " Create custom mapping to toggle the test file (default `<leader>ft`)
-nmap <leader>ft <Plug>ToggleTestFile
+nmap <leader>ft <Plug>ToggleTestFile<CR>
+
+" Create custom mapping to open a vertical split with the toggled file (default `<leader>fT`)
+nmap <leader>fT <Plug>VToggleTestFile<CR>
+
+" Create custom mapping to open a horizontal split with the toggled file
+nmap <leader>fS <Plug>SToggleTestFile<CR>
 ```
 
 # Licence
 
-[Public Domain](LICENSE)
+[UNLICENSE](LICENSE)

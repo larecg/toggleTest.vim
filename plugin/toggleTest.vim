@@ -9,7 +9,7 @@ let g:toggleTest_useTestFolder = get(g:, "toggleTest_useTestFolder", 1)
 let g:toggleTest_testFolder = get(g:, "toggleTest_testFolder", "tests")
 let g:toggleTest_testFileSuffix = get(g:, "toggleTest_testFileSuffix", "test")
 
-function! s:toggleTestFile() abort
+function! s:toggleTestFile(command) abort
   let l:currentFilePath = expand("%:p")
   let l:currentFileName = expand("%:t")
   let l:directoryName = expand("%:p:h:t")
@@ -24,9 +24,9 @@ function! s:toggleTestFile() abort
 
   if l:isTestFile
     if g:toggleTest_useTestFolder && l:isTestDirectory
-      execute "edit " . l:currentFileDirectoryPath[:-l:testFolderLength] . l:currentFileName[:-l:nameWithoutTestSuffixLength] . l:currentFileExtension
+      execute a:command . " " . l:currentFileDirectoryPath[:-l:testFolderLength] . l:currentFileName[:-l:nameWithoutTestSuffixLength] . l:currentFileExtension
     else
-      execute "edit " . l:currentFilePath[:-l:nameWithoutTestSuffixLength] . l:currentFileExtension
+      execute a:command . " " . l:currentFilePath[:-l:nameWithoutTestSuffixLength] . l:currentFileExtension
     endif
   else
     let l:testFileFolder = l:currentFileDirectoryPath . "/" . g:toggleTest_testFolder
@@ -34,20 +34,23 @@ function! s:toggleTestFile() abort
     let l:testFileWithoutTestFolder = l:currentFileDirectoryPath . "/" . l:currentFileName[:-l:extensionLength] . g:toggleTest_testFileSuffix . "." . l:currentFileExtension
 
     if !g:toggleTest_useTestFolder || !empty(glob(l:testFileWithoutTestFolder))
-      execute "edit " . l:testFileWithoutTestFolder
+      execute a:command . " " . l:testFileWithoutTestFolder
     else
       if !isdirectory(l:testFileFolder)
         call mkdir(l:testFileFolder, "p")
       endif
-      execute "edit " . l:testFileWithTestFolder
+      execute a:command . " " . l:testFileWithTestFolder
     endif
   endif
 endfunction
 
 
-nnoremap <silent> <Plug>ToggleTestFile  :<C-U>call <SID>toggleTestFile()<CR>
+nnoremap <silent> <Plug>ToggleTestFile  :<C-U>call <SID>toggleTestFile("edit")<CR>
+nnoremap <silent> <Plug>VToggleTestFile  :<C-U>call <SID>toggleTestFile("vsplit")<CR>
+nnoremap <silent> <Plug>SToggleTestFile  :<C-U>call <SID>toggleTestFile("split")<CR>
 
 if !g:toggleTest_no_mappings
-  nmap <leader>ft <Plug>ToggleTestFile
+  nmap <leader>ft <Plug>ToggleTestFile<CR>
+  nmap <leader>fT <Plug>VToggleTestFile<CR>
 endif
 
