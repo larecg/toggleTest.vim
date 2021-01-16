@@ -1,0 +1,129 @@
+*toggleTest.vim.txt*    It switches between the Test and the Implementation files
+
+|toggleTest-intro|    toggleTest.vim
+|toggleTest-Installation|    Installation
+|toggleTest-Via-Plugin-Manager-Recommended|    Via Plugin Manager (Recommended)
+|toggleTest-Vim-Plug-https-github-com-junegunn-vim-plug|    [Vim-Plug](https://github.com/junegunn/vim-plug)
+|toggleTest-Vundle-https-github-com-VundleVim-Vundle-vim-or-similar|    [Vundle](https://github.com/VundleVim/Vundle.vim) or similar
+|toggleTest-NeoBundle-https-github-com-Shougo-neobundle-vim|    [NeoBundle](https://github.com/Shougo/neobundle.vim)
+|toggleTest-Pathogen-https-github-com-tpope-vim-pathogen|    [Pathogen](https://github.com/tpope/vim-pathogen)
+|toggleTest-Vim8-package-loading|    Vim8 package loading
+|toggleTest-Usage|    Usage
+|toggleTest-Settings|    Settings
+|toggleTest-Licence|    Licence
+
+TOGGLETEST.VIM                *toggleTest-intro*
+
+It switches between the Test and the Implementation files
+
+
+INSTALLATION                *toggleTest-Installation*
+
+
+VIA PLUGIN MANAGER (RECOMMENDED)                *toggleTest-Via-Plugin-Manager-Recommended*
+
+
+[VIM-PLUG](HTTPS://GITHUB.COM/JUNEGUNN/VIM-PLUG)                *toggleTest-Vim-Plug-https-github-com-junegunn-vim-plug*
+
+Add `Plug 'larecg/toggleTest.vim'` to your vimrc file.
+
+Reload your vimrc or restart
+
+Run `:PlugInstall`
+
+
+[VUNDLE](HTTPS://GITHUB.COM/VUNDLEVIM/VUNDLE.VIM) OR SIMILAR                *toggleTest-Vundle-https-github-com-VundleVim-Vundle-vim-or-similar*
+
+Add `Plugin 'larecg/toggleTest.vim'` to your vimrc file.
+
+Reload your vimrc or restart
+
+Run `:BundleInstall`
+
+
+[NEOBUNDLE](HTTPS://GITHUB.COM/SHOUGO/NEOBUNDLE.VIM)                *toggleTest-NeoBundle-https-github-com-Shougo-neobundle-vim*
+
+Add `NeoBundle 'larecg/toggleTest.vim'` to your vimrc file.
+
+Reload your vimrc or restart
+
+Run `:NeoUpdate`
+
+
+[PATHOGEN](HTTPS://GITHUB.COM/TPOPE/VIM-PATHOGEN)                *toggleTest-Pathogen-https-github-com-tpope-vim-pathogen*
+
+>
+    cd ~/.vim/bundle
+    git clone https://github.com/larecg/toggleTest.vim.git
+<
+
+
+VIM8 PACKAGE LOADING                *toggleTest-Vim8-package-loading*
+
+>
+    git clone https://github.com/larecg/toggleTest.vim.git ~/.vim/pack/larecg/start/toggleTest.vim
+<
+
+
+USAGE                *toggleTest-Usage*
+
+In any file use `<leader>ft` to toggle between the current file and the test file
+
+
+SETTINGS                *toggleTest-Settings*
+
+>
+    " Are all the tests grouped in a nested test folder (default: 1)
+    let g:toggleTest_useTestFolder = 1
+
+    " Avoid creating default mappings (default: 0)
+    let g:toggleTest_no_mappings = 1
+
+    " Folder that contains the test files (default: "tests")
+    let g:toggleTest_testFolder = "tests"
+
+    " Test file suffix (default: "test")
+    let g:toggleTest_testFileSuffix = "test"
+
+    " Create custom mapping to toggle the test file (default `<leader>ft`)
+    nmap <leader>ft <Plug>ToggleTestFile<CR>
+
+    " Create custom mapping to open a vertical split with the toggled file (default `<leader>fT`)
+    nmap <leader>fT <Plug>VToggleTestFile<CR>
+
+    " Create custom mapping to open a horizontal split with the toggled file
+    nmap <leader>fS <Plug>SToggleTestFile<CR>
+<
+
+
+LICENCE                *toggleTest-Licence*
+
+
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <https://unlicense.org>
+
+
+
+vim:tw=78:ts=8:ft=help:norl:
