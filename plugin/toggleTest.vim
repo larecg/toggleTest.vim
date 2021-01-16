@@ -4,9 +4,10 @@ endif
 
 let g:loaded_toggleTest = 1
 
-let g:toggleTest_useTestFolder = get(g:, 'toggleTest_useTestFolder', 1)
-let g:toggleTest_testFolder = get(g:, 'toggleTest_testFolder', "tests")
-let g:toggleTest_testFileSuffix = get(g:, 'toggleTest_testFileSuffix', "test")
+let g:toggleTest_no_mappings = get(g:, "toggleTest_no_mappings", 0)
+let g:toggleTest_useTestFolder = get(g:, "toggleTest_useTestFolder", 1)
+let g:toggleTest_testFolder = get(g:, "toggleTest_testFolder", "tests")
+let g:toggleTest_testFileSuffix = get(g:, "toggleTest_testFileSuffix", "test")
 
 function! s:toggleTestFile() abort
   let l:currentFilePath = expand("%:p")
@@ -14,8 +15,8 @@ function! s:toggleTestFile() abort
   let l:directoryName = expand("%:p:h:t")
   let l:currentFileExtension = expand("%:e")
   let l:currentFileDirectoryPath = expand("%:p:h")
-  let l:isTestDirectory = l:directoryName =~ g:toggleTest_testFolder
-  let l:isTestFile = l:currentFileName =~ g:toggleTest_testFileSuffix . "." . l:currentFileExtension
+  let l:isTestDirectory = l:directoryName =~# g:toggleTest_testFolder
+  let l:isTestFile = l:currentFileName =~# g:toggleTest_testFileSuffix . "." . l:currentFileExtension
 
   let l:extensionLength = len(l:currentFileExtension) + 1
   let l:testFolderLength = len(g:toggleTest_testFolder) + 1
@@ -46,7 +47,7 @@ endfunction
 
 nnoremap <silent> <Plug>ToggleTestFile  :<C-U>call <SID>toggleTestFile()<CR>
 
-if !exists("g:toggleTest_no_mappings") || ! g:toggleTest_no_mappings
+if !g:toggleTest_no_mappings
   nmap <leader>ft <Plug>ToggleTestFile
 endif
 

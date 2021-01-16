@@ -1,6 +1,6 @@
 # toggleTest.vim
 
-It switches between the Test file and the Implementation file.
+It switches between the Test and the Implementation files
 
 ## Installation
 
@@ -31,7 +31,7 @@ cd ~/.vim/bundle
 git clone https://github.com/larecg/toggleTest.vim.git
 ```
 
-#### Vim8 package loading
+### Vim8 package loading
 
 ```sh
 git clone https://github.com/larecg/toggleTest.vim.git ~/.vim/pack/larecg/start/toggleTest.vim
