@@ -48,6 +48,12 @@ In any file use `<leader>ft` to toggle between the current file and the test fil
 " Avoid creating default mappings (default: 0)
 let g:toggleTest_no_mappings = 1
 
+" Folder that contains the test files (default: "tests")
+let g:toggleTest_testFolder = "tests"
+
+" Test file suffix (default: "test")
+let g:toggleTest_testFileSuffix = "test"
+
 " Create custom mapping to toggle the test file (default `<leader>ft`)
 nmap <leader>ft <Plug>ToggleTestFile
 ```
@@ -55,4 +61,3 @@ nmap <leader>ft <Plug>ToggleTestFile
 # Licence
 
 [Public Domain](LICENSE)
-
